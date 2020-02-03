@@ -1,0 +1,82 @@
+{
+    "glyphs": "http://10.0.75.1:6767/fonts/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "background_",
+            "paint": {
+                "background-color": "rgba(255, 255, 255, 1)"
+            },
+            "type": "background"
+        },
+        {
+            "id": "simple-tiles",
+            "type": "raster",
+            "source": "raster-tiles",
+            "minzoom": 0,
+            "maxzoom": 24
+            },
+        {
+            "id": "parcel",
+            "source": "parcel",
+            "source-layer": "parcel",
+            "type": "line",
+            "minzoom": 12,
+            "paint": {
+                "line-color": "rgba(37, 57, 85, 1)",
+                "line-width": 4,
+                "line-opacity": 0.8
+            },
+            "layout": {
+                "line-join": "bevel",
+                "line-cap": "round"
+            }
+        },
+        {
+            "id": "parcel-highlight",
+            "source": "parcel",
+            "source-layer": "parcel",
+            "type": "fill",
+            "minzoom": 12,
+            "paint": {
+                "fill-color": "rgba(157, 75, 73, 1)",
+                "fill-opacity": 0.8
+            },
+            "filter": ["in", "ogc_fid", ""]
+        },
+        {
+            "id": "parcel-copy",
+            "source": "parcel",
+            "source-layer": "parcel",
+            "type": "fill",
+            "minzoom": 12,
+            "paint": {
+                "fill-color": "rgba(134, 156, 175, 1)",
+                "fill-opacity": 0.4
+            },
+            "layout": {}
+        }
+    ],
+    "metadata": {
+        "mapbox:autocomposite": false,
+        "maputnik:renderer": "mbgljs"
+    },
+    "name": "t-rex",
+    "sources": {
+        
+        "parcel": {
+            "type": "vector",
+            "url": "http://10.0.75.1:6767/parcel.json"
+        },
+        "parcel-copy": {
+            "type": "vector",
+            "url": "http://10.0.75.1:6767/parcel.json"
+        },
+        "raster-tiles": {
+            "type": "raster",
+            "tiles": ["http://b.tile.stamen.com/toner/{z}/{x}/{y}.png"],
+            "tileSize": 256
+            }
+        
+    },
+    "version": 8
+}

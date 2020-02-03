@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+       
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src
+      'self'
+      data: gap: https://ssl.gstatic.com
+      http://webserver.example.com
+      http://basemaps.arcgis.com
+      http://js.arcgis.com
+      http://server.arcgisonline.com
+      http://services.arcgisonline.com
+      http://static.arcgis.com
+      http://www.arcgis.com
+      https://webserver.example.com
+      https://basemaps.arcgis.com
+      https://js.arcgis.com
+      https://server.arcgisonline.com
+      https://services.arcgisonline.com
+      https://static.arcgis.com
+      https://www.arcgis.com
+      http://10.0.75.1:6767
+      http://10.0.75.1:5000
+      http://localhost:8000
+      http://b.tile.stamen.com
+      blob:;
+    connect-src
+      'self'
+      http://webserver.example.com
+      http://basemaps.arcgis.com
+      http://js.arcgis.com
+      http://server.arcgisonline.com
+      http://services.arcgisonline.com
+      http://static.arcgis.com
+      http://www.arcgis.com
+      https://webserver.example.com
+      https://basemaps.arcgis.com
+      https://js.arcgis.com
+      https://server.arcgisonline.com
+      https://services.arcgisonline.com
+      https://static.arcgis.com
+      https://www.arcgis.com;
+      http://10.0.75.1:6767
+      http://10.0.75.1:5000
+      http://localhost:8000/
+      http://b.tile.stamen.com
+    font-src
+      'self'
+      http://webserver.example.com
+      http://js.arcgis.com
+      https://webserver.example.com
+      https://js.arcgis.com
+      http://10.0.75.1:5000
+      http://10.0.75.1:6767
+      http://localhost:8000/
+      http://b.tile.stamen.com
+      data:;
+    style-src 'self'
+      http://webserver.example.com
+      http://js.arcgis.com
+      https://webserver.example.com
+      https://js.arcgis.com
+      http://10.0.75.1:6767
+      http://10.0.75.1:5000
+      http://localhost:8000/
+      http://b.tile.stamen.com
+      'unsafe-inline';
+    script-src
+      'self'
+      http://webserver.example.com
+      http://js.arcgis.com
+      https://webserver.example.com
+      https://js.arcgis.com
+      http://10.0.75.1:6767
+      http://10.0.75.1:5000
+      http://localhost:8000/
+      http://b.tile.stamen.com
+      'unsafe-eval';
+">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+
+    <title>Utah County Parcels</title>
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link href='css/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="theme/mapapp.css" />
+    <link rel="stylesheet" href="theme/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src='js/mapbox-gl.js'></script>
+</head>
+
+<body>
+    <div class="app">
+        <div data-role="page" id="demo-page" data-url="demo-page" tabindex="0"
+            class="ui-page ui-page-theme-a ui-page-active" style="min-height: 790px;">
+
+            <div class="ui-panel-wrapper">
+                <div data-role="header" data-theme="b" role="banner" class="ui-header ui-bar-b nav">
+                    <h1 class="ui-title title-text" role="heading" aria-level="1">Parcel Map</h1>
+                    <a href="#left-panel" data-icon="carat-r" data-iconpos="notext" data-shadow="false"
+                        data-iconshadow="false"
+                        class="ui-nodisc-icon ui-link ui-btn-left ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all btncolor"
+                        data-role="button" role="button">Open left panel</a>
+                </div>
+                <div role="main" class="ui-content map-container">
+                    <div id="map"></div>
+                </div>
+            </div><!-- /header -->
+            <!-- /content -->
+            <div data-role="panel" id="left-panel" data-theme="b"
+                class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-animate ui-panel-closed">
+                <div class="ui-panel-inner">
+                    <p>Map controls</p>
+                    <p></p>
+                    <a href="#" data-rel="close"
+                        class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left">Close</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
