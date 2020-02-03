@@ -7,7 +7,7 @@ npm install will need to be ran before using.
 The most common comands:
 
 ```
-cordova build browser'
+cordova build browser
 cordova build ios
 
 cordova run browser
@@ -15,7 +15,7 @@ cordova run ios
 ```
 
 This is just to show capabilites. This app is using the backend to the web version in another of my repos.
-
+All open source cost no money to use.
 
 
 ![image1](gitimages/app1.JPG)
