@@ -1,6 +1,6 @@
 # Cordova app for Utah Country parcel
 
-This is just a simple cordova app for mobile that I created during the superbowl. Its very basic but show the possibilites. 
+This is just a simple cordova app for turning html projects into mobile(ios, android, windows) apps that I put togther while watching the superbowl. Its very basic but shows the possibilites. 
 
 npm install will need to be ran before using.
 
