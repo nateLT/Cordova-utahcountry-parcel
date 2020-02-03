@@ -18,7 +18,7 @@ This is just to show capabilites. This app is using the backend to the web versi
 
 
 
-![image1](gitimages/app1.jpg)
+![image1](gitimages/app1.JPG)
 
 
-![image2](gitimages/Capture2.jpg)
+![image2](gitimages/Capture2.JPG)
